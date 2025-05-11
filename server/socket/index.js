@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const raceSocket = require('./raceSocket');
 
 module.exports = (io) => {
   // Socket.io authentication middleware
@@ -28,11 +29,6 @@ module.exports = (io) => {
     }
   });
 
-  io.on('connection', (socket) => {
-    console.log(`User connected: ${socket.user.username}`);
-    
-    socket.on('disconnect', () => {
-      console.log(`User disconnected: ${socket.user.username}`);
-    });
-  });
+  // Initialize race socket events
+  raceSocket(io);
 };
