@@ -109,7 +109,7 @@ class AuthController {
 
   static async getProfile(req, res) {
     try {
-      const user = await User.findById(req.user.id);
+      const user = await User.findById(req.user.user_id);
       if (!user) {
         return res.status(404).json({
           success: false,
